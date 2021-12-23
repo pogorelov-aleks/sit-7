@@ -33,7 +33,7 @@ router.put('/students/:id', async(req, res) => {
     const {last_name, first_name, group_name} = req.body;
     const students = await db.query(
     "UPDATE STUDENTS SET first_name = $1, last_name = $2, group_name = $3, updated_at = $4 
-    WHERE id = $5 RETURNING *", [first_name, last_name, group_name, day2, id]);
+    WHERE id = $5 RETURNING *", [first_name, last_name, group_name, day2.toISOString(), id]);
     res.json(students.rows[0]);
 });
 
